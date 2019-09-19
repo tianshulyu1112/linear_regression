@@ -56,7 +56,7 @@ def prepare_data(input):
     
     y = input['Average Medicare Payments']
 
-    X = np.column_stack(x1, x2)
+    X = np.column_stack(np.ones(len(x1)), x1, x2)
 
     data['X'] = X
     data['y'] = y
