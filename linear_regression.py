@@ -37,7 +37,8 @@ def load_hospital_data():
     RETURNS
         clean_df (pandas.DataFrame) containing the cleaned and formatted dataset for regression
     """
-    pass
+    clean_df = pd.read_csv('hospital_charge_sample.csv')
+    return clean_df
 
 
 def prepare_data():
