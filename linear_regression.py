@@ -41,7 +41,7 @@ def load_hospital_data():
     return clean_df
 
 
-def prepare_data():
+def prepare_data(input):
     """
     Prepares hospital data for regression (basically turns df into X and y).
     INPUT
@@ -49,8 +49,19 @@ def prepare_data():
     RETURNS
         data (dict) containing X design matrix and y response variable
     """
-    pass
+    data = dict()
 
+    x1 = input['Average Covered Charges']
+    x2 = pd.get_dummies(input['Total Discharges'])
+    
+    y = input['Average Medicare Payments']
+
+    X = np.column_stack(x1, x2)
+
+    data['X'] = X
+    data['y'] = y
+
+    return data
 
 def run_hospital_regression():
     """
