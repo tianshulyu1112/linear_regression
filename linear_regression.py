@@ -6,7 +6,7 @@ from sklearn.linear_model import LinearRegression
 import statsmodels.api as sm
 
 ### my test
-def simulate_data():
+def simulate_data(n=1000):
     """
     Simulates data for testing linear_regression models.
     INPUT
@@ -14,8 +14,16 @@ def simulate_data():
     RETURNS
         data (dict) contains X, y, and beta vectors.
     """
-    pass
-
+    x0 = np.ones(n)
+    x1 = np.random.exponential(9000,n)
+    x2 = np.random.poisson(15,n)
+    residual = np.random.normal(0,1,n)
+    beta = np.random.normal(0,2.5,size=np.transpose(np.array([x0,x1,x2])).shape[1])
+    data={}
+    data['beta'] = beta
+    data['X'] = np.transpose(np.array([x0,x1,x2]))
+    data['y'] = data['X'].dot(beta) + residual
+    return data
 
 def compare_models():
     """
@@ -29,7 +37,7 @@ def compare_models():
     pass
 
 
-def load_hospital_data():
+def load_hospital_data(path_to_data):
     """
     Loads the hospital charges data set found at data.gov.
     INPUT
@@ -37,7 +45,7 @@ def load_hospital_data():
     RETURNS
         clean_df (pandas.DataFrame) containing the cleaned and formatted dataset for regression
     """
-    clean_df = pd.read_csv('hospital_charge_sample.csv')
+    clean_df = pd.read_csv(path_to_data)
     return clean_df
 
 
