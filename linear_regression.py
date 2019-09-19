@@ -62,15 +62,17 @@ def run_hospital_regression():
     """
     data_prelim = load_hospital_data()
     data_reg = prepare_data(data_prelim)
-    x=data_reg[:,-2]
-    y=data_reg[:,-1]
-    regressor = LinearRegression()
-    regressor.fit(x,y)
-    results = reg.coef_
-    return results
-
-   
-    pass
+    x=data_reg['x']
+    y=data_reg['y']
+    #regressor = LinearRegression()
+    #regressor.fit(x,y)
+    #results = reg.coef_
+    #return results
+    reg = sm.OLS(y,x)
+    coef = reg.fit()
+    results = coef.summary()
+    file = results.as_text()
+    return file
  
 
 ### END ###
