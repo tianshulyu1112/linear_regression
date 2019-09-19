@@ -60,6 +60,16 @@ def run_hospital_regression():
     RETURNS
         results (str) the statsmodels regression output
     """
+    data_prelim = load_hospital_data()
+    data_reg = prepare_data(data_prelim)
+    x=data_reg[:,-2]
+    y=data_reg[:,-1]
+    regressor = LinearRegression()
+    regressor.fit(x,y)
+    results = reg.coef_
+    return results
+
+   
     pass
  
 
